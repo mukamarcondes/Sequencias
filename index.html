@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Sequencias</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Analise historica</span>
+        <h1>Leitor de Sequencias de 15 Numeros</h1>
+        <p>
+          Cole o historico ou importe um arquivo. O sistema identifica padroes
+          estatisticos e sugere a proxima sequencia provavel com base em
+          heuristicas avancadas.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Entrada de Dados</h2>
+        <label class="file-input">
+          <input type="file" id="arquivo" accept=".txt,.csv" />
+          <span>Importar TXT/CSV</span>
+        </label>
+      </div>
+
+      <label for="historico" class="label">Historico</label>
+      <textarea
+        id="historico"
+        placeholder="Exemplo:
+01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+02 03 05 06 08 09 10 11 13 14 15 17 18 20 25"
+      ></textarea>
+
+      <div class="toolbar">
+        <div class="toolbar-group">
+          <label for="quantidadeJogos">Jogos</label>
+          <select id="quantidadeJogos">
+            <option value="1">1 jogo</option>
+            <option value="3" selected>3 jogos</option>
+            <option value="5">5 jogos</option>
+          </select>
+        </div>
+
+        <div class="actions">
+          <button id="btnCarregar">Carregar</button>
+          <button id="btnSalvar">Salvar</button>
+          <button id="btnAnalisar">Analisar</button>
+          <button id="btnPrever" class="primary">Gerar Jogos</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>Resumo da Analise</h2>
+        <div id="resumo" class="summary">
+          Cole os dados e clique em analisar.
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Ultimo Concurso x Previsao</h2>
+        <div id="comparacao" class="comparison">
+          A comparacao sera exibida apos a geracao.
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Jogos Sugeridos</h2>
+      <div id="previsoes" class="games"></div>
+    </section>
+
+    <section class="grid charts">
+      <article class="panel">
+        <h2>Frequencia Ponderada</h2>
+        <canvas id="graficoFrequencia"></canvas>
+      </article>
+
+      <article class="panel">
+        <h2>Atraso por Numero</h2>
+        <canvas id="graficoAtraso"></canvas>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head score-head">
+        <div>
+          <h2>Como o Score e Calculado</h2>
+          <p class="score-intro">Selecione um numero para ver os componentes usados na pontuacao heuristica.</p>
+        </div>
+        <div class="toolbar-group score-picker-wrap">
+          <label for="scoreNumero">Numero</label>
+          <select id="scoreNumero"></select>
+        </div>
+      </div>
+      <div id="scoreExplicacao" class="score-grid"></div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>Ranking dos Numeros</h2>
+        <div id="ranking" class="ranking"></div>
+      </article>
+
+      <article class="panel">
+        <h2>10 Menos Provaveis</h2>
+        <p class="score-intro">Leitura inversa baseada na mesma heuristica do motor. Nao representa impossibilidade real.</p>
+        <div id="menosProvaveis" class="ranking ranking-low"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="./index.js"></script>
+</body>
+</html>
+
